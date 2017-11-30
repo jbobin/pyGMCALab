@@ -1,0 +1,8 @@
+/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/BoostNumpy-prefix/src/BoostNumpy-build/libs/numpy/example/CMakeFiles/dtype.dir
+/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/BoostNumpy-prefix/src/BoostNumpy-build/libs/numpy/src/CMakeFiles/boost_numpy.dir
+/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/BoostNumpy-prefix/src/BoostNumpy-build/libs/numpy/example/CMakeFiles/fromdata.dir
+/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/BoostNumpy-prefix/src/BoostNumpy-build/libs/numpy/example/CMakeFiles/ufunc.dir
+/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/BoostNumpy-prefix/src/BoostNumpy-build/libs/numpy/example/CMakeFiles/ndarray.dir
+/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/BoostNumpy-prefix/src/BoostNumpy-build/libs/numpy/example/CMakeFiles/simple.dir
+/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/BoostNumpy-prefix/src/BoostNumpy-build/libs/numpy/example/CMakeFiles/gaussian.dir
+/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/BoostNumpy-prefix/src/BoostNumpy-build/libs/numpy/example/CMakeFiles/wrap.dir

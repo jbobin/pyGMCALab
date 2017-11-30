@@ -1,0 +1,10 @@
+/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/extern/include/boost/numpy/dtype.hpp
+/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/extern/include/boost/numpy/internal.hpp
+/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/extern/include/boost/numpy/invoke_matching.hpp
+/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/extern/include/boost/numpy/matrix.hpp
+/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/extern/include/boost/numpy/ndarray.hpp
+/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/extern/include/boost/numpy/numpy_object_mgr_traits.hpp
+/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/extern/include/boost/numpy/scalars.hpp
+/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/extern/include/boost/numpy/ufunc.hpp
+/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/extern/include/boost/numpy.hpp
+/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/extern/lib/libboost_numpy.a

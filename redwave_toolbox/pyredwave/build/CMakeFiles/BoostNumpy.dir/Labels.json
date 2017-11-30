@@ -1,0 +1,51 @@
+
+{
+	"sources" : 
+	[
+		
+		{
+			"file" : "/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/CMakeFiles/BoostNumpy"
+		},
+		
+		{
+			"file" : "/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/CMakeFiles/BoostNumpy.rule"
+		},
+		
+		{
+			"file" : "/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/CMakeFiles/BoostNumpy-complete.rule"
+		},
+		
+		{
+			"file" : "/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/BoostNumpy-prefix/src/BoostNumpy-stamp/BoostNumpy-install.rule"
+		},
+		
+		{
+			"file" : "/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/BoostNumpy-prefix/src/BoostNumpy-stamp/BoostNumpy-mkdir.rule"
+		},
+		
+		{
+			"file" : "/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/BoostNumpy-prefix/src/BoostNumpy-stamp/BoostNumpy-download.rule"
+		},
+		
+		{
+			"file" : "/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/BoostNumpy-prefix/src/BoostNumpy-stamp/BoostNumpy-update.rule"
+		},
+		
+		{
+			"file" : "/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/BoostNumpy-prefix/src/BoostNumpy-stamp/BoostNumpy-patch.rule"
+		},
+		
+		{
+			"file" : "/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/BoostNumpy-prefix/src/BoostNumpy-stamp/BoostNumpy-configure.rule"
+		},
+		
+		{
+			"file" : "/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/BoostNumpy-prefix/src/BoostNumpy-stamp/BoostNumpy-build.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : [ "BoostNumpy" ],
+		"name" : "BoostNumpy"
+	}
+}

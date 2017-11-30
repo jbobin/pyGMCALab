@@ -1,0 +1,1 @@
+cmd='/opt/local/bin/cmake;-DCMAKE_INSTALL_PREFIX=/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/extern;-DLIBRARY_TYPE=STATIC;-GUnix Makefiles;/Users/jbobin/Downloads/GMCAlab-python/pygmca/pyredwave/build/BoostNumpy-prefix/src/BoostNumpy'
