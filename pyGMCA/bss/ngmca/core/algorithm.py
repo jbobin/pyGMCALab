@@ -41,7 +41,7 @@ __url__ = "http://www.cosmostat.org/GMCALab.html"
 __copyright__ = "(c) 2014 CEA"
 __license__ = "CeCill"
 
-from pyGMCA.core.tools import fill_parameters
+from pyGMCA.bss.ngmca.core.tools import fill_parameters
 from PyQt4.QtGui import QApplication
 from gc import collect
 from matplotlib import pyplot
@@ -52,7 +52,7 @@ import time
 class Algorithm(object):
     r"""
     This virtual class provides a framework for algorithms.
-    
+
     Notes
     -----
     Each heir class must implement functions:
@@ -62,7 +62,7 @@ class Algorithm(object):
     The iterates should be recorded in the dictionary _data
     Algorithms are called by function "run" which returns the results in a
     dictionary.
-    
+
     Inputs
     ------
     Necessary and optional parameters depend on the heriting class and can be
@@ -70,7 +70,7 @@ class Algorithm(object):
     class or when running the algorithm. In case of double affectation of a
     parameter, the one provided at runtime is used.
     All algorithms share the keyword parameters below.
-    
+
     Keyword parameters (optional)
     ------------------
     - display_function (optional): function
@@ -94,19 +94,19 @@ class Algorithm(object):
         for stopping the algorithm (not activated if 0).
     """
 
-    
+
     def __init__(self, parameters=None, **kargs):
         r"""
         Class constructor.
         Parameters can be provided upon instance creation
         (see inputs and keywords)
-        
+
         Inputs
         ------
         - parameters (default: None): dict
             Parameters dictionary, with potential keywords provided below.
         - any keyword argument from the ones listed below.
-        
+
         Keyword parameters (optional)
         ------------------
         - display_function (optional): function
@@ -147,11 +147,11 @@ class Algorithm(object):
         self.add_parameters(parameters, kargs)
         self.__recording_functions = {}
         self._current_iterate = None  # for relative difference tolerance
-    
+
     def __no_display(self, data):
         r"Abstract class used only for default parameter. Does nothing."
         pass
-    
+
     def add_parameters(self, parameters, kargs):
         r"""
         Update parameter dictionary with the one provided
@@ -160,41 +160,41 @@ class Algorithm(object):
         if parameters is not None:
             self._parameters.update(parameters)
         self._parameters.update(kargs)
-    
+
     def _initialize(self):
         r"Function called at the beginning of the algorithm."
         raise NotImplementedError
-    
+
     def _terminate(self):
         r"Function called at the end of the algorithm."
         raise NotImplementedError
-    
+
     def _iterate(self):
         r"Function called at each iteration of the algorithm."
         raise NotImplementedError
-    
+
     def name(self):
         r"Name of the algorithm"
         return self.__class__.__name__
-    
+
     def reset_parameters(self):
         r"Reset all keyword parameters to their default value."
         self._parameters = {}
-    
+
     def _extract_current_iterate_matrix(self):
         r"Function called at each iteration to compute the relative difference."
         raise NotImplementedError
-    
+
     def run(self, parameters=None, **kargs):
         r"""
         Run the algorithm.
-        
+
         Inputs
         ------
         - parameters (default: None): dict
             Parameters dictionary, with potential keywords provided below.
         - any keyword argument from the ones listed below.
-        
+
         Keywords
         --------
         See class or constructor docstring for possible keywords.
@@ -258,7 +258,7 @@ desactivated (_extract_current_iterate_matrix not implemented).""")
             print("Total computation time: %s." % (time.time() -
                                                    beginning_time))
         return self._data
-    
+
     def __recording(self):
         r"""
         Function aiming at recording the information computed by

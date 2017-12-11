@@ -2,7 +2,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-from pyGMCA import proximal
+from pyGMCA.bss.ngmca import proximal
 
 
 # this script shows how to use the Forward backward algorithm
@@ -54,5 +54,3 @@ FB = proximal.algorithms.ForwardBackward()
 # Launch the algorithm with the parameters. Other parameters can be passed
 # independently
 res = FB.run(parameters, initialization=x0, verbose=1)
-
-    

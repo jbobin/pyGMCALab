@@ -101,40 +101,4 @@ print("Experiment complete")
 #%%
 print("Evolution of the mixing matrix criterion when the dynamic varies")
 #
-n = 4
-m = 4
-t = 2048
-p1 = 0.3
-sigma1 = 4
-p = 0.1
-pval = np.linspace(0,4,10)
-#
-C_G_dyn_level = np.zeros((10,N_MC))
-C_A_dyn_level = np.zeros((10,N_MC))
-#
-for It_MC in range(0,N_MC):
-    for R_p in range(0,10):
-        dyna = pval[R_p]
-        X,X0,A0,S0,N,sigma_noise,kern = bu.Make_Experiment_Coherent(n_s=n,n_obs=m,t_samp=t,w=0.1,noise_level=120,dynamic=dyna,sigma1=sigma1,p1=p1,ptot=p)
-        Rg = gmca.GMCA(X0,n=n,mints=0,nmax=500,L0=0,UseP=1)
-        crit = bu.EvalCriterion(A0,S0,Rg["mixmat"],Rg["sources"])
-        C_G_dyn_level[R_p,It_MC] = crit["ca_med"]
-        Ra = amca.AMCA(X0,n,mints=0,nmax=500,q_f = 0.1,L0=1,UseP=1)
-        crit = bu.EvalCriterion(A0,S0,Ra["mixmat"],Ra["sources"])
-        C_A_dyn_level[R_p,It_MC] = crit["ca_med"]
-#
-#%% PLOTTING THE RESULTS
-plt.figure(2)
-pval = np.linspace(0,6,10)
-plt.title('Mixing matrix criterion as a function of the dynamic')
-tempG = np.median(C_G_dyn_level,1)
-tempA = np.median(C_A_dyn_level,1)
-Mrange = 5.**np.max([np.max(tempA),np.max(tempG)])
-mrange = 0.2*np.min([np.min(tempA),np.min(tempG)])
-plt.semilogy(pval,tempG,'k8',alpha=0.75)
-plt.semilogy(pval,tempA,'ro',alpha=0.75)
-plt.axis([0,1.1*np.max(pval), mrange,Mrange])
-plt.xlabel("Dynamic range")
-plt.ylabel("Median mixing matrix criterion")
-#
 print("Experiment complete")

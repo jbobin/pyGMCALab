@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 # import matplotlib.image as mpimg
 
 # from pyngmca import proximal
-from pyGMCA import bss
+from pyGMCA.bss.ngmca import base as bss
 #from pygmca.pyredwave import RedWave
 
 
@@ -38,8 +38,7 @@ lambda_rec = lambda data: np.max(data['lambda'])
 
 
 #%% first method for using nGMCA
-alg = bss.ngmca.Ngmca()
-
+alg = bss.algos.Ngmca()
 
 parameters = {'data': Y,
               'rank': data_settings['rank'],
@@ -52,7 +51,7 @@ parameters = {'data': Y,
 parameters['display_function'] = \
     lambda data: plt.plot(data['factorization'].S.T)
 parameters['display_time'] = 1
-    
+
 # set a particular initialization (for repeatability)
 np.random.seed(58)
 # launch the algorithm
@@ -65,20 +64,20 @@ crit = bss.tools.evaluation(result, reference, True)[0]
 #%% second method for using nGMCA
 # updaters are classes which are called for the updates of
 # A and S. One can choose between different types of updaters
-alg = bss.ngmca.Framework()
+alg = bss.algos.Framework()
 lambda_rec = lambda data: np.max(data['S_updater'].lambdas)
 parameters_upd = {'data': Y,
                   'rank': data_settings['rank'],
                   'verbose': 1,
                   'maximum_iteration': 300,
-                  'S_updater': bss.ngmca.SparseUpdater(tau_mad=1),
-                  'A_updater': bss.ngmca.SparseUpdater(tau_mad=0),
+                  'S_updater': bss.algos.SparseUpdater(tau_mad=1),
+                  'A_updater': bss.algos.SparseUpdater(tau_mad=0),
                   'recording_functions': {'lambda': lambda_rec,
                                           'criteria': criteria_rec}}
 parameters_upd['display_function'] =\
     lambda data: plt.plot(data['factorization'].S.T)
 parameters_upd['display_time'] = 1
- 
+
 np.random.seed(58)
 result_upd = alg.run(parameters_upd)
 crit = bss.tools.evaluation(result_upd, reference, True)[0]

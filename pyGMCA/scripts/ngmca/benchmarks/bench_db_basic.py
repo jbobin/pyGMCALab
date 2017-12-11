@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from pygmca import bss
+from pyGMCA.bss.ngmca import base as bss
 
 # settings which are passed to the data_generator
 # exactly one tuple is allowed between variables data_settings and
@@ -21,7 +21,7 @@ data_settings['alpha_S'] = 1
 algorithm_settings = {"number_of_iterations": 10}
 
 # dictionary of algorithms to be used for the benchmark
-algorithms = {"nGMCA": bss.gmca.Ngmca()}
+algorithms = {"nGMCA": bss.algos.Ngmca()}
 
 # settings for the processing of the benchmark, including;
 # - the number of repetitions for each point of the bench variable.
@@ -31,7 +31,7 @@ algorithms = {"nGMCA": bss.gmca.Ngmca()}
 # - data_generator: the function which creates the data
 # - display: if the field is present, results will be displayed during the
 #       computation. It can take arguments for the display function.
-# - additional_inputs: function which returns a dictionary which will be 
+# - additional_inputs: function which returns a dictionary which will be
 #       appended to the parameters. This can be useful for providing data
 #       dependant settings, or more complex input parameters.
 processing_settings = {"number_of_repetitions": 10,
@@ -39,5 +39,3 @@ processing_settings = {"number_of_repetitions": 10,
                                     "SDR_A", "SIR_A", "SNR_A", "SAR_A"],
                        "data_generator": bss.tools.create_sparse_data,
                        "display": {}}
-
-

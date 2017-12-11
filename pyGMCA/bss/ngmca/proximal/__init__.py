@@ -40,5 +40,5 @@ __url__ = "http://www.cosmostat.org/GMCALab.html"
 __copyright__ = "(c) 2014 CEA"
 __license__ = "CeCill"
 
-from pyGMCA.proximal import algorithms
-from pyGMCA.proximal import operators
+import algorithms
+import operators

@@ -1,47 +1,47 @@
-# -\*- coding: utf-8 -\*-
+# # -\*- coding: utf-8 -\*-
+#
+# r"""
+# algorithms.py - This file is part of pygmca.
+# The pygmca package aims at performing non-negative matrix factorization.
+# This module provides proximal algorithms.
+# Copyright 2014 CEA
+# Contributor : Jérémy Rapin (jeremy.rapin.math@gmail.com)
+# Created on September 30, 2014, last modified on December 14, 2014
+#
+# This software is governed by the CeCILL  license under French law and
+# abiding by the rules of distribution of free software.  You can  use,
+# modify and/ or redistribute the software under the terms of the CeCILL
+# license as circulated by CEA, CNRS and INRIA at the following URL
+# "http://www.cecill.info".
+#
+# As a counterpart to the access to the source code and  rights to copy,
+# modify and redistribute granted by the license, users are provided only
+# with a limited warranty  and the software's author,  the holder of the
+# economic rights,  and the successive licensors  have only  limited
+# liability.
+#
+# In this respect, the user's attention is drawn to the risks associated
+# with loading,  using,  modifying and/or developing or reproducing the
+# software by the user in light of its specific status of free software,
+# that may mean  that it is complicated to manipulate,  and  that  also
+# therefore means  that it is reserved for developers  and  experienced
+# professionals having in-depth computer knowledge. Users are therefore
+# encouraged to load and test the software's suitability as regards their
+# requirements in conditions enabling the security of their systems and/or
+# data to be ensured and,  more generally, to use and operate it in the
+# same conditions as regards security.
+#
+# The fact that you are presently reading this means that you have had
+# knowledge of the CeCILL license and that you accept its terms.
+# """
+#
+# __version__ = "1.0"
+# __author__ = "Jeremy Rapin"
+# __url__ = "http://www.cosmostat.org/GMCALab.html"
+# __copyright__ = "(c) 2014 CEA"
+# __license__ = "CeCill"
 
-r"""
-algorithms.py - This file is part of pygmca.
-The pygmca package aims at performing non-negative matrix factorization.
-This module provides proximal algorithms.
-Copyright 2014 CEA
-Contributor : Jérémy Rapin (jeremy.rapin.math@gmail.com)
-Created on September 30, 2014, last modified on December 14, 2014
-
-This software is governed by the CeCILL  license under French law and
-abiding by the rules of distribution of free software.  You can  use,
-modify and/ or redistribute the software under the terms of the CeCILL
-license as circulated by CEA, CNRS and INRIA at the following URL
-"http://www.cecill.info".
-
-As a counterpart to the access to the source code and  rights to copy,
-modify and redistribute granted by the license, users are provided only
-with a limited warranty  and the software's author,  the holder of the
-economic rights,  and the successive licensors  have only  limited
-liability.
-
-In this respect, the user's attention is drawn to the risks associated
-with loading,  using,  modifying and/or developing or reproducing the
-software by the user in light of its specific status of free software,
-that may mean  that it is complicated to manipulate,  and  that  also
-therefore means  that it is reserved for developers  and  experienced
-professionals having in-depth computer knowledge. Users are therefore
-encouraged to load and test the software's suitability as regards their
-requirements in conditions enabling the security of their systems and/or
-data to be ensured and,  more generally, to use and operate it in the
-same conditions as regards security.
-
-The fact that you are presently reading this means that you have had
-knowledge of the CeCILL license and that you accept its terms.
-"""
-
-__version__ = "1.0"
-__author__ = "Jeremy Rapin"
-__url__ = "http://www.cosmostat.org/GMCALab.html"
-__copyright__ = "(c) 2014 CEA"
-__license__ = "CeCill"
-
-from pyGMCA.core import Algorithm
+from pyGMCA.bss.ngmca.core.algorithm import Algorithm
 import numpy as np
 
 class ForwardBackward(Algorithm):
@@ -50,12 +50,12 @@ class ForwardBackward(Algorithm):
     The Forward-Backward algorithm (see Combettes and Wajs 2005) solves
     min_x f(x)+\lambda g(x) with f convex differentiable with Lipschitz
     gradient, and g proper convex and lower semi-continuous function.
-    
+
     Necessary and optional parameters can be provided in a dictionary or
     as keyword parameter at instanciating the class or when running the
     algorithm. In case of double affectation of a parameter, the one
     provided at runtime is used. The keywords parameters are listed below.
-    
+
     Keyword parameters (required)
     ------------------
     - gradient (required): Function
@@ -66,7 +66,7 @@ class ForwardBackward(Algorithm):
         Lipschitz constant of the gradient function of f.
     - proximal (required): Function
         Proximal of function g, with two arguments: current point and step.
-    
+
     Keyword parameters (optional)
     ------------------
     - display_time (default: 0.5): float
@@ -97,13 +97,13 @@ class ForwardBackward(Algorithm):
         Class constructor.
         Parameters can be provided upon instance creation
         (see inputs and keywords)
-        
+
         Inputs
         ------
         - parameters (default: None): dict
             Parameters dictionary, with potential keywords provided below.
         - any keyword argument from the ones listed below.
-        
+
         Keyword parameters (required)
         ------------------
         - gradient (required): Function
@@ -114,7 +114,7 @@ class ForwardBackward(Algorithm):
             Lipschitz constant of the gradient function of f.
         - proximal (required): Function
             Proximal of function g, with two arguments: current point and step.
-        
+
         Keyword parameters (optional)
         ------------------
         - display_time (default: 0.5): float
@@ -147,7 +147,7 @@ class ForwardBackward(Algorithm):
             'lambda': 1,
             'initialization': None,
             'relative_difference_tolerance': 0.00001})
-    
+
     def _initialize(self):
         r"Function called at the beginning of the algorithm."
         self.__gradient = self._parameters['gradient']
@@ -157,11 +157,11 @@ class ForwardBackward(Algorithm):
         self._data['x'] = self._parameters['initialization']
         self.__t = 1
         self._data['previous_x'] = self._data['x'].copy()
-    
+
     def _terminate(self):
         r"Function called at the end of the algorithm."
         del self._data['previous_x']
-    
+
     def _iterate(self):
         r"Function called at each iteration of the algorithm."
         t_next = (1 + np.sqrt(1 + 4 * self.__t * self.__t)) / 2
@@ -172,7 +172,7 @@ class ForwardBackward(Algorithm):
         self.__t = t_next
         self._data['x'] = self.__proximal(y - self.__gradient(y) / self.__L,
                                           self.__lambda / self.__L)
-    
+
     def _extract_current_iterate_matrix(self):
         r"Function called at each iteration to compute the relative difference."
         return self._data['x']
@@ -190,7 +190,7 @@ class GeneralizedForwardBackward(Algorithm):
     as keyword parameter at instanciating the class or when running the
     algorithm. In case of double affectation of a parameter, the one
     provided at runtime is used. The keywords parameters are listed below.
-    
+
     Keyword parameters (required)
     ------------------
     - proximals (required): list of Functions
@@ -204,7 +204,7 @@ class GeneralizedForwardBackward(Algorithm):
         Lipschitz constant of the gradient function of f.
     - lambdas (required): numpy array
         Values of the sparsity parameter.
-    
+
     Keyword parameters (optional)
     ------------------
     - display_time (default: 0.5): float
@@ -228,19 +228,19 @@ class GeneralizedForwardBackward(Algorithm):
         if the output is a structure.
     """
 
-    
+
     def __init__(self, parameters=None, **kargs):
         r"""
         Class constructor.
         Parameters can be provided upon instance creation
         (see inputs and keywords)
-        
+
         Inputs
         ------
         - parameters (default: None): dict
             Parameters dictionary, with potential keywords provided below.
         - any keyword argument from the ones listed below.
-        
+
         Keyword parameters (required)
         ------------------
         - proximals (required): list of Functions
@@ -254,7 +254,7 @@ class GeneralizedForwardBackward(Algorithm):
             Lipschitz constant of the gradient function of f.
         - lambdas (required): numpy array
             Values of the sparsity parameter.
-        
+
         Keyword parameters (optional)
         ------------------
         - display_time (default: 0.5): float
@@ -286,7 +286,7 @@ class GeneralizedForwardBackward(Algorithm):
             'initialization': None,
             'relative_difference_tolerance': 0.00001})
         self._num_prox = 0
-    
+
     def _initialize(self):
         r"Function called at the beginning of the algorithm."
         self.__gradient = self._parameters['gradient']
@@ -306,11 +306,11 @@ class GeneralizedForwardBackward(Algorithm):
         # lambda_t in the paper
         self.__mu_t = min((1.0 + 2.0 * self.__beta / self.__gamma_t) / 2.0,
                           3.0 / 2.0) * 0.9
-    
+
     def _terminate(self):
         r"Function called at the end of the algorithm."
         del self._data['z']
-    
+
     def _iterate(self):
         r"Function called at each iteration of the algorithm."
         x = self._data['x'].copy()
@@ -322,7 +322,7 @@ class GeneralizedForwardBackward(Algorithm):
                 self.__lambdas[k] * (self.__gamma_t / self.__omega_i)) - x)
             # update x
             self._data['x'] += self.__omega_i * self._data['z'][k]
-    
+
     def _extract_current_iterate_matrix(self):
         r"Function called at each iteration to compute the relative difference."
         return self._data['x']

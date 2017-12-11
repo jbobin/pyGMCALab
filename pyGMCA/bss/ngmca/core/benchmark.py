@@ -1,45 +1,45 @@
-# -\*- coding: utf-8 -\*-
-
-r"""
-benchmark.py - This file is part of pygmca.
-The pygmca package aims at performing non-negative matrix factorization.
-This module provides processing tools.
-Copyright 2014 CEA
-Contributor : Jérémy Rapin (jeremy.rapin.math@gmail.com)
-Created on December 13, 2014, last modified on December 14, 2014
-
-This software is governed by the CeCILL  license under French law and
-abiding by the rules of distribution of free software.  You can  use,
-modify and/ or redistribute the software under the terms of the CeCILL
-license as circulated by CEA, CNRS and INRIA at the following URL
-"http://www.cecill.info".
-
-As a counterpart to the access to the source code and  rights to copy,
-modify and redistribute granted by the license, users are provided only
-with a limited warranty  and the software's author,  the holder of the
-economic rights,  and the successive licensors  have only  limited
-liability.
-
-In this respect, the user's attention is drawn to the risks associated
-with loading,  using,  modifying and/or developing or reproducing the
-software by the user in light of its specific status of free software,
-that may mean  that it is complicated to manipulate,  and  that  also
-therefore means  that it is reserved for developers  and  experienced
-professionals having in-depth computer knowledge. Users are therefore
-encouraged to load and test the software's suitability as regards their
-requirements in conditions enabling the security of their systems and/or
-data to be ensured and,  more generally, to use and operate it in the
-same conditions as regards security.
-
-The fact that you are presently reading this means that you have had
-knowledge of the CeCILL license and that you accept its terms.
-"""
-
-__version__ = "1.0"
-__author__ = "Jeremy Rapin"
-__url__ = "http://www.cosmostat.org/GMCALab.html"
-__copyright__ = "(c) 2014 CEA"
-__license__ = "CeCill"
+# # -\*- coding: utf-8 -\*-
+#
+# r"""
+# benchmark.py - This file is part of pygmca.
+# The pygmca package aims at performing non-negative matrix factorization.
+# This module provides processing tools.
+# Copyright 2014 CEA
+# Contributor : Jérémy Rapin (jeremy.rapin.math@gmail.com)
+# Created on December 13, 2014, last modified on December 14, 2014
+#
+# This software is governed by the CeCILL  license under French law and
+# abiding by the rules of distribution of free software.  You can  use,
+# modify and/ or redistribute the software under the terms of the CeCILL
+# license as circulated by CEA, CNRS and INRIA at the following URL
+# "http://www.cecill.info".
+#
+# As a counterpart to the access to the source code and  rights to copy,
+# modify and redistribute granted by the license, users are provided only
+# with a limited warranty  and the software's author,  the holder of the
+# economic rights,  and the successive licensors  have only  limited
+# liability.
+#
+# In this respect, the user's attention is drawn to the risks associated
+# with loading,  using,  modifying and/or developing or reproducing the
+# software by the user in light of its specific status of free software,
+# that may mean  that it is complicated to manipulate,  and  that  also
+# therefore means  that it is reserved for developers  and  experienced
+# professionals having in-depth computer knowledge. Users are therefore
+# encouraged to load and test the software's suitability as regards their
+# requirements in conditions enabling the security of their systems and/or
+# data to be ensured and,  more generally, to use and operate it in the
+# same conditions as regards security.
+#
+# The fact that you are presently reading this means that you have had
+# knowledge of the CeCILL license and that you accept its terms.
+# """
+#
+# __version__ = "1.0"
+# __author__ = "Jeremy Rapin"
+# __url__ = "http://www.cosmostat.org/GMCALab.html"
+# __copyright__ = "(c) 2014 CEA"
+# __license__ = "CeCill"
 
 # -*- coding: utf-8 -*-
 """
@@ -53,7 +53,7 @@ import datetime
 import time
 import sys
 import os
-from pyGMCA.bss.tools import evaluation as bss_eval
+from pyGMCA.bss.ngmca.base.tools import evaluation as bss_eval
 import matplotlib.pyplot as plt
 from PyQt4.QtGui import QApplication
 from gc import collect
@@ -62,10 +62,10 @@ from gc import collect
 class Benchmark(object):
     r"""
     Class implementing the computation, loading and display of a benchmark.
-    Benchmarks can be initialized from a config file (.py) or a 
-    computed benchmark file (.bch). Examples of files are provided in a separate 
+    Benchmarks can be initialized from a config file (.py) or a
+    computed benchmark file (.bch). Examples of files are provided in a separate
     benchmark directory.
-    
+
     Input
     -----
     filepath: string
@@ -75,10 +75,10 @@ class Benchmark(object):
 
     def __init__(self, filepath=None):
         r"""
-        Initialization of the benchmark from a config file (.py) or a 
-        computed benchmark file (.bch). Examples of files are provided in a separate 
+        Initialization of the benchmark from a config file (.py) or a
+        computed benchmark file (.bch). Examples of files are provided in a separate
         benchmark directory.
-        
+
         Input
         -----
         filepath: string
@@ -152,12 +152,12 @@ benchmaks (.bch) are allowed.""")
             self._num_points, self._num_repet,
             datetime.datetime.now().strftime("%d%b%y_%H%M"),
             self._hash)
-    
+
     def save(self, save_relative_directory=""):
         r"""
         Saves this benchmark instance to a given folder.
         File name is autogenerated.
-        
+
         Inputs
         ------
         - save_relative_directory (default: ""): str
@@ -176,13 +176,13 @@ benchmaks (.bch) are allowed.""")
         data_pickle = sfile.read()
         sfile.close()
         self.__dict__ = cPickle.loads(data_pickle)
-    
+
     def _check_bench_variable(self, settings):
         r"""
         Looks for a tuple within the variables. Such a variable is the bench
         variable (each computation will be done considering one element of the
         tuple).
-        
+
         Input
         -----
         settings: dict
@@ -198,7 +198,7 @@ benchmaks (.bch) are allowed.""")
                 else:
                     raise Exception("""Only one bench variable is allowed.
 (bench are defined by tuples)""")
-    
+
     def _extract_value(self, settings, settings_name, key):
         r"Extracts a given value from a settings dictionary."
         try:
@@ -206,11 +206,11 @@ benchmaks (.bch) are allowed.""")
         except:
             raise Exception("Variable %s should contain key value %s." %
                             (settings_name, key))
-    
+
     def run(self, save_relative_directory=""):
         r"""
         Run the benchmark and save it to the given directory.
-        
+
         Inputs
         ------
         - save_relative_directory (default: ""): str
@@ -234,7 +234,7 @@ benchmaks (.bch) are allowed.""")
         total_iterations = self._num_points * self._num_repet
         current_iteration = 0
         for point in range(0, self._num_points):
-            
+
             current_data_settings = self._extract_point_settings(data_settings,
                                                                  point)
             current_algorithm_settings = self._extract_point_settings(\
@@ -271,7 +271,7 @@ benchmaks (.bch) are allowed.""")
                     parameters.update(processing_settings["additional_inputs"](
                         current_data_settings, reference))
                 #plt.plot(parameters['data'].T)
-                #QApplication.processEvents() 
+                #QApplication.processEvents()
                 # start algoritms
                 for algo_num in range(0, num_algo):
                     algo = self._algorithm_names[algo_num]
@@ -305,7 +305,7 @@ benchmaks (.bch) are allowed.""")
         # end time
         self.end_time = datetime.datetime.now().strftime("%d%b%y_%H%M")
         self.save(save_relative_directory)
-            
+
 
     def _extract_point_settings(self, settings, num):
         r"Extract the settings for a given point of the benchmark."
@@ -317,11 +317,11 @@ benchmaks (.bch) are allowed.""")
                     settings_copy[self._bench_variable][num]
                 return settings_copy
         return settings
-    
+
     def display(self, options=None, name=None, **kargs):
         r"""
         Displays the computed benchmark.
-        
+
         Inputs
         ------
         - options (default: None): dict
@@ -329,7 +329,7 @@ benchmaks (.bch) are allowed.""")
         - name (default: None): str
             name of the figure to plot.
         - any keyword argument from the ones listed below.
-        
+
         Keyword parameters (optional)
         ------------------
         - linestyles (optional): list
@@ -467,7 +467,7 @@ benchmaks (.bch) are allowed.""")
             else:
                 raise Exception("Unknown plottype.")
         plt.legend()
-    
+
     def _seconds_to_string(self, seconds):
         r"Converst an amount of second to a string."
         string = ""

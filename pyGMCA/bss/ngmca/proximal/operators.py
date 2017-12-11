@@ -42,13 +42,13 @@ __copyright__ = "(c) 2014 CEA"
 __license__ = "CeCill"
 
 import numpy as np
-from pyGMCA.core import tools
+from pyGMCA.bss.ngmca.core import tools
 
 
 def soft_thresholding(x, threshold):
     r"""
     Performs soft-thresholding on a given input.
-    
+
     Inputs
     ------
     - x: numpy array
@@ -63,7 +63,7 @@ def soft_thresholding(x, threshold):
 def hard_thresholding(x, threshold):
     r"""
     Performs hard-thresholding on a given input.
-    
+
     Inputs
     ------
     - x: numpy array
@@ -77,7 +77,7 @@ def hard_thresholding(x, threshold):
 def nonnegative_soft_thresholding(x, threshold):
     r"""
     Performs non-negative soft-thresholding on a given input.
-    
+
     Inputs
     ------
     - x: numpy array
@@ -91,7 +91,7 @@ def nonnegative_soft_thresholding(x, threshold):
 def nonnegative_hard_thresholding(x, threshold):
     r"""
     Performs non-negative hard-thresholding on a given input.
-    
+
     Inputs
     ------
     - x: numpy array
@@ -106,7 +106,7 @@ def norm_projection(data, norm_limits):
     r"""
     Projects the norm of each vector exctracted along a given dimension
     to the provided value.
-    
+
     Inputs
     ------
     - data: numpy array
@@ -114,8 +114,9 @@ def norm_projection(data, norm_limits):
     - norm_limits: float
         Maximum norms allowed along a given dimension.
     """
-    dim = np.where(np.array(data.shape) / np.array(norm_limits.shape) > 1)
-    if len(dim) == 1:
+    #dim = np.where(np.array(data.shape) / np.array(norm_limits.shape) > 1)
+    dim = np.array(np.flatnonzero(np.array(data.shape) / np.array(norm_limits.shape) > 1)[0])
+    if np.size(dim) == 1:
         data_norms = tools.dim_norm(data, dim)
         data_norms[data_norms == 0] = 1
         data = np.minimum(1, norm_limits / data_norms) * data

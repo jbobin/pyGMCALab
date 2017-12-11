@@ -3,8 +3,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from pyGMCA import bss
-from redwave_toolbox.pyredwave import RedWave
+from pyGMCA.bss.ngmca import base as bss
+from redwave_toolbox.pyredwave import RedWave # Should be fixed
 
 
 # %% create the data
@@ -45,7 +45,7 @@ parameters = {'data': Y,
                                       'criteria': criteria_rec}}
 parameters['display_function'] = lambda data: plt.plot(data['factorization'].S.T)
 parameters['display_time'] = 1
- 
+
 np.random.seed(58)
 result_ana = alg.run(parameters)
 crit = bss.tools.evaluation(result_ana, reference, True)[0]
@@ -63,13 +63,13 @@ parameters = {'data': Y,
                                       'criteria': criteria_rec}}
 parameters['display_function'] = lambda data: plt.plot(data['factorization'].S.T)
 parameters['display_time'] = 1
- 
+
 np.random.seed(58)
 result = alg.run(parameters)
 crit = bss.tools.evaluation(result, reference, True)[0]
 
 
-#%% visualization of the evolution of the SDR_S 
+#%% visualization of the evolution of the SDR_S
 plt.clf()
 plt.plot(result_ana['recording']['SDR_S'])
 plt.plot(result['recording']['SDR_S'])
@@ -142,6 +142,6 @@ parameters['display_time'] = 1
 np.random.seed(58)
 result_ana_2D = alg.run(parameters)
 crit = bss.tools.evaluation(result_ana_2D, reference, True)[0]
-# to make this faster: improve the _update_lambda function so as to 
+# to make this faster: improve the _update_lambda function so as to
 # compute the standard deviation on a subset of the data at each
 # iteration.

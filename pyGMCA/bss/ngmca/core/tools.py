@@ -58,6 +58,7 @@ def dim_norm(data, dim=0, norm_type=2):
     - norm_type (default: 2): int
         Norm type to be used for the computation (norms 1 or 2).
     """
+
     if norm_type == 2:
         norms = np.sqrt(np.sum(data * data, axis=dim))
     else:

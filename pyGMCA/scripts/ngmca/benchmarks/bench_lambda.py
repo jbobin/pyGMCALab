@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from pygmca import bss
+import pyGMCA.bss.ngmca.base as bss
 import numpy as np
 
 
@@ -19,16 +19,16 @@ data_settings = {'rows': 24,
 algorithm_settings = {"maximum_iteration": 200}
 
 # dictionary of algorithms to be used for the benchmark
-algorithms = {"nGMCA": bss.gmca.Ngmca(),
-              "nGMCA_framework": bss.gmca.Framework({
-                  'A_updater': bss.gmca.SparseUpdater(tau_mad=0)})}
+algorithms = {"nGMCA": bss.algos.Ngmca(),
+              "nGMCA_framework": bss.algos.Framework({
+                  'A_updater': bss.algos.SparseUpdater(tau_mad=0)})}
 
 
 def provide_tau_mad(data_settings, reference):
     # set up tau_mad for different algoriths
     tau_mad = data_settings["S_tau_mad"]
-    from pygmca import bss # not convenient, but works
-    return {'S_updater': bss.gmca.SparseUpdater(tau_mad=tau_mad),
+    from pyGMCA import bss # not convenient, but works
+    return {'S_updater': bss.algos.SparseUpdater(tau_mad=tau_mad),
             'S_parameters': {"tau_mad":tau_mad}}
 
 # settings for the processing of the benchmark, including;
@@ -39,7 +39,7 @@ def provide_tau_mad(data_settings, reference):
 # - data_generator: the function which creates the data
 # - display: if the field is present, results will be displayed during the
 #       computation. It can take arguments for the display function.
-# - additional_inputs: function which returns a dictionary which will be 
+# - additional_inputs: function which returns a dictionary which will be
 #       appended to the parameters. This can be useful for providing data
 #       dependant settings, or more complex input parameters.
 processing_settings = {"number_of_repetitions": 12,
@@ -48,5 +48,3 @@ processing_settings = {"number_of_repetitions": 12,
                        "data_generator": bss.tools.create_realistic_nmr_mixtures,
                        "additional_inputs": provide_tau_mad,
                        "display": {}}
-
-
