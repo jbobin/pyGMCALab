@@ -1,56 +1,56 @@
 # -\*- coding: utf-8 -\*-
-
-r"""
-standard.py - This file is part of pygmca.
-The pygmca package aims at performing non-negative matrix factorization.
-This module implements the standard version of nGMCA.
-Copyright 2014 CEA
-Contributor : Jérémy Rapin (jeremy.rapin.math@gmail.com)
-Created on October 06, 2014, last modified on December 14, 2014
-
-This software is governed by the CeCILL  license under French law and
-abiding by the rules of distribution of free software.  You can  use,
-modify and/ or redistribute the software under the terms of the CeCILL
-license as circulated by CEA, CNRS and INRIA at the following URL
-"http://www.cecill.info".
-
-As a counterpart to the access to the source code and  rights to copy,
-modify and redistribute granted by the license, users are provided only
-with a limited warranty  and the software's author,  the holder of the
-economic rights,  and the successive licensors  have only  limited
-liability.
-
-In this respect, the user's attention is drawn to the risks associated
-with loading,  using,  modifying and/or developing or reproducing the
-software by the user in light of its specific status of free software,
-that may mean  that it is complicated to manipulate,  and  that  also
-therefore means  that it is reserved for developers  and  experienced
-professionals having in-depth computer knowledge. Users are therefore
-encouraged to load and test the software's suitability as regards their
-requirements in conditions enabling the security of their systems and/or
-data to be ensured and,  more generally, to use and operate it in the
-same conditions as regards security.
-
-The fact that you are presently reading this means that you have had
-knowledge of the CeCILL license and that you accept its terms.
-"""
-
-__version__ = "1.0"
-__author__ = "Jeremy Rapin"
-__url__ = "http://www.cosmostat.org/GMCALab.html"
-__copyright__ = "(c) 2014 CEA"
-__license__ = "CeCill"
-
-from pyGMCA import core
-from pyGMCA.bss import tools
-import numpy as np
+#
+# r"""
+# standard.py - This file is part of pygmca.
+# The pygmca package aims at performing non-negative matrix factorization.
+# This module implements the standard version of nGMCA.
+# Copyright 2014 CEA
+# Contributor : Jérémy Rapin (jeremy.rapin.math@gmail.com)
+# Created on October 06, 2014, last modified on December 14, 2014
+#
+# This software is governed by the CeCILL  license under French law and
+# abiding by the rules of distribution of free software.  You can  use,
+# modify and/ or redistribute the software under the terms of the CeCILL
+# license as circulated by CEA, CNRS and INRIA at the following URL
+# "http://www.cecill.info".
+#
+# As a counterpart to the access to the source code and  rights to copy,
+# modify and redistribute granted by the license, users are provided only
+# with a limited warranty  and the software's author,  the holder of the
+# economic rights,  and the successive licensors  have only  limited
+# liability.
+#
+# In this respect, the user's attention is drawn to the risks associated
+# with loading,  using,  modifying and/or developing or reproducing the
+# software by the user in light of its specific status of free software,
+# that may mean  that it is complicated to manipulate,  and  that  also
+# therefore means  that it is reserved for developers  and  experienced
+# professionals having in-depth computer knowledge. Users are therefore
+# encouraged to load and test the software's suitability as regards their
+# requirements in conditions enabling the security of their systems and/or
+# data to be ensured and,  more generally, to use and operate it in the
+# same conditions as regards security.
+#
+# The fact that you are presently reading this means that you have had
+# knowledge of the CeCILL license and that you accept its terms.
+# """
+#
+# __version__ = "1.0"
+# __author__ = "Jeremy Rapin"
+# __url__ = "http://www.cosmostat.org/GMCALab.html"
+# __copyright__ = "(c) 2014 CEA"
+# __license__ = "CeCill"
+#
+# from pyGMCA import core
+# from pyGMCA.bss import tools
+# import numpy as np
 
 
 class Ngmca(core.Algorithm):
     r"""
     nGMCA algorithm.
     non-negative Generalized Morphological Component Analysis
-    
+
     Aims at solving:
     argmin_(A >= 0, S >= 0) 1 / 2 * ||Y - A * S||_2^2 + lambda * ||S||_1
     using iterative soft-thresholding.
@@ -58,21 +58,21 @@ class Ngmca(core.Algorithm):
     tau_MAD*sigma_noise at the end of the algorithm, where tau_MAD is a
     constant (preferably in [1,3]) and sigma_noise is an online estimate of
     the noise standard deviation.
-    
+
     For more information, this algorithm is described as nGMCA^S in:
     J. Rapin, J.Bobin, A. Larue and J.L. Starck,
     Sparse and Non-negative BSS for Noisy Data,
     IEEE Transactions on Signal Processing, 2013.
     Please use the above reference if using this code in a publication.
-    
-    
+
+
     Keyword parameters (required)
     ------------------
     - rank (required): int
         Rank of the factorization (number of source signals to recover).
     - data (required): numpy array
         Data array to be processed.
-    
+
     Keyword parameters (optional)
     ------------------
     - linear_tau_mad_decrease (default: False): bool
@@ -116,12 +116,12 @@ class Ngmca(core.Algorithm):
         If True, the first sparsity parameter (lambda) is the overall maximum
         on all the gradient, otherwise it is computed line by line of the
         gradient.
-    
-    
+
+
     Note
     ----
     Aims at solving the following problem:
-    
+
     .. math::
         \text{argmin}_{\mathbf{S}\ge 0,~\mathbf{A}\ge 0} \frac{1}{2}\|\mathbf{Y} - \mathbf{A} \mathbf{S}\|_2^2 + \|\mathbf{\mu} \odot \mathbf{S}||_1
     """
@@ -131,20 +131,20 @@ class Ngmca(core.Algorithm):
         Class constructor.
         Parameters can be provided upon instance creation
         (see inputs and keywords)
-        
+
         Inputs
         ------
         - parameters (default: None): dict
             Parameters dictionary, with potential keywords provided below.
         - any keyword argument from the ones listed below.
-        
+
         Keyword parameters (required)
         ------------------
         - rank (required): int
             Rank of the factorization (number of source signals to recover).
         - data (required): numpy array
             Data array to be processed.
-        
+
         Keyword parameters (optional)
         ------------------
         - linear_tau_mad_decrease (default: False): bool
@@ -201,7 +201,7 @@ class Ngmca(core.Algorithm):
             "uniform_first_sparsity": True})
         self.__refinement_iteration = 0
         self._current_tau_mad = None
-    
+
     def _initialize(self):
         r"Function called at the beginning of the algorithm."
         #prepare useful constants
@@ -216,11 +216,11 @@ class Ngmca(core.Algorithm):
             self._data['factorization'] =\
                 tools.warm_initialization(self._parameters['data'],
                                           self._parameters['rank'])
-    
+
     def _terminate(self):
         r"Function called at the end of the algorithm."
         self._data['factorization'].set_scale_on('S')
-    
+
     def _iterate(self):
         r"Function called at each iteration of the algorithm."
         # obtain handles
@@ -245,18 +245,18 @@ class Ngmca(core.Algorithm):
         AtA = factor.S.dot(factor.S.T)
         factor.A = tools.nonnegative_sparse_inversion(AtY, AtA, factor.A.T,
             0, self._parameters['A_parameters']).T
-    
+
     def _update_data_noise(self):
         r"Computes an estimate of the noise on the data."
         key = 'additive_standard_deviation'
         factor = self._data['factorization']
         data = self._parameters['data']
-        if key in self._parameters.keys():  
+        if key in self._parameters.keys():
             self._data["data_noise"] = self._parameters[key]
         else:  # use MAD estimator otherwise
             self._data["data_noise"] = core.tools.dim_mad_std(
                 data - factor.A.dot(factor.S), 1)
-    
+
     def _update_lambda(self):
         r"""
         Updates the value of the lambda parameter from iteration to iteration.
@@ -296,8 +296,7 @@ class Ngmca(core.Algorithm):
                     self._data['lambda'] =\
                         tools.linear_decrease(remaining_iterations,
                         self._data['lambda'], self.__tau_mad * grad_noise)
-    
+
     def _extract_current_iterate_matrix(self):
         r"Function called at each iteration to compute the relative difference."
         return self._data['factorization'].A.copy()
-        

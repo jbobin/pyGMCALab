@@ -1,45 +1,45 @@
 # -\*- coding: utf-8 -\*-
-
-r"""
-updaters.py - This file is part of pygmca.
-The pygmca package aims at performing non-negative matrix factorization.
-This module implements updaters to be used with the generic GMCA framework.
-Copyright 2014 CEA
-Contributor : Jérémy Rapin (jeremy.rapin.math@gmail.com)
-Created on December 13, 2014, last modified on December 14, 2014
-
-This software is governed by the CeCILL  license under French law and
-abiding by the rules of distribution of free software.  You can  use,
-modify and/ or redistribute the software under the terms of the CeCILL
-license as circulated by CEA, CNRS and INRIA at the following URL
-"http://www.cecill.info".
-
-As a counterpart to the access to the source code and  rights to copy,
-modify and redistribute granted by the license, users are provided only
-with a limited warranty  and the software's author,  the holder of the
-economic rights,  and the successive licensors  have only  limited
-liability.
-
-In this respect, the user's attention is drawn to the risks associated
-with loading,  using,  modifying and/or developing or reproducing the
-software by the user in light of its specific status of free software,
-that may mean  that it is complicated to manipulate,  and  that  also
-therefore means  that it is reserved for developers  and  experienced
-professionals having in-depth computer knowledge. Users are therefore
-encouraged to load and test the software's suitability as regards their
-requirements in conditions enabling the security of their systems and/or
-data to be ensured and,  more generally, to use and operate it in the
-same conditions as regards security.
-
-The fact that you are presently reading this means that you have had
-knowledge of the CeCILL license and that you accept its terms.
-"""
-
-__version__ = "1.0"
-__author__ = "Jeremy Rapin"
-__url__ = "http://www.cosmostat.org/GMCALab.html"
-__copyright__ = "(c) 2014 CEA"
-__license__ = "CeCill"
+# 
+# r"""
+# updaters.py - This file is part of pygmca.
+# The pygmca package aims at performing non-negative matrix factorization.
+# This module implements updaters to be used with the generic GMCA framework.
+# Copyright 2014 CEA
+# Contributor : Jérémy Rapin (jeremy.rapin.math@gmail.com)
+# Created on December 13, 2014, last modified on December 14, 2014
+#
+# This software is governed by the CeCILL  license under French law and
+# abiding by the rules of distribution of free software.  You can  use,
+# modify and/ or redistribute the software under the terms of the CeCILL
+# license as circulated by CEA, CNRS and INRIA at the following URL
+# "http://www.cecill.info".
+#
+# As a counterpart to the access to the source code and  rights to copy,
+# modify and redistribute granted by the license, users are provided only
+# with a limited warranty  and the software's author,  the holder of the
+# economic rights,  and the successive licensors  have only  limited
+# liability.
+#
+# In this respect, the user's attention is drawn to the risks associated
+# with loading,  using,  modifying and/or developing or reproducing the
+# software by the user in light of its specific status of free software,
+# that may mean  that it is complicated to manipulate,  and  that  also
+# therefore means  that it is reserved for developers  and  experienced
+# professionals having in-depth computer knowledge. Users are therefore
+# encouraged to load and test the software's suitability as regards their
+# requirements in conditions enabling the security of their systems and/or
+# data to be ensured and,  more generally, to use and operate it in the
+# same conditions as regards security.
+#
+# The fact that you are presently reading this means that you have had
+# knowledge of the CeCILL license and that you accept its terms.
+# """
+#
+# __version__ = "1.0"
+# __author__ = "Jeremy Rapin"
+# __url__ = "http://www.cosmostat.org/GMCALab.html"
+# __copyright__ = "(c) 2014 CEA"
+# __license__ = "CeCill"
 
 # -*- coding: utf-8 -*-
 from pyGMCA.bss.ngmca.framework import Updater
@@ -52,14 +52,14 @@ from pyGMCA.bss import tools as bsstools
 class SparseUpdater(Updater):
     r"""
     Updaters implement specific updates for the mixing coefficients
-    A and the spectra A. They are designed to be used with the 
+    A and the spectra A. They are designed to be used with the
     Framework class.
     This updater aims at solving problem:
     argmin_{S >= 0} ||Y - A S||_2^2 + ||lambda .* S||_1
     using FISTA (Beck & Teboulle 2009).
     Required and optional keyword parameters
     are listed below.
-    
+
     Keyword parameters (optional)
     ------------------
     - linear_tau_mad_decrease (default: False): bool
@@ -87,33 +87,33 @@ class SparseUpdater(Updater):
         gradient.
     - nonnegative (default: True): bool
         If True, uses a non-negative constraint.
-    
-    
+
+
     Note
     ----
     This updater aims at solving:
-    
+
     .. math::
         \text{argmin}_{\mathbf{S}\ge 0} \frac{1}{2}\|\mathbf{Y} - \mathbf{A} \mathbf{S}\|_2^2 + \|\mathbf{\mu} \odot \mathbf{S}||_1
-    
+
     .
     """
 
     def __init__(self, parameters=None, **kargs):
         r"""
         Updaters implement specific updates for the mixing coefficients
-        A and the spectra A. They are designed to be used with the 
+        A and the spectra A. They are designed to be used with the
         Framework class.
         This updater aims at solving problem:
         argmin_{S >= 0} ||Y - A S||_2^2 + ||lambda .* S||_1
         using FISTA (Beck & Teboulle 2009).
-        
+
         Inputs
         ------
         - parameters (default: None): dict
             Parameters dictionary, with potential keywords provided below.
         - any keyword argument from the ones listed below.
-        
+
         Keyword parameters (optional)
         ------------------
         - linear_tau_mad_decrease (default: False): bool
@@ -141,15 +141,15 @@ class SparseUpdater(Updater):
             gradient.
         - nonnegative (default: True): bool
             If True, uses a non-negative constraint.
-        
-        
+
+
         Note
         ----
         This updater aims at solving:
-        
+
         .. math::
             \text{argmin}_{\mathbf{S}\ge 0} \frac{1}{2}\|\mathbf{Y} - \mathbf{A} \mathbf{S}\|_2^2 + \|\mathbf{\mu} \odot \mathbf{S}||_1
-        
+
         .
         """
         Updater.__init__(self)
@@ -165,12 +165,12 @@ class SparseUpdater(Updater):
         self._tau_mad = self._parameters["tau_mad"]
         self._current_tau_mad = None
         self.noise = None
-    
+
     def _initialize(self, data, A, S, main_parameters, which):
         r"""
         Function called at the beginning of the algorithm so as to
         prepare the update steps.
-        
+
         Inputs
         ------
         - data: numpy array
@@ -204,12 +204,12 @@ class SparseUpdater(Updater):
                 self.lambdas = np.max(self.lambdas)
             if self._parameters["linear_tau_mad_decrease"]:
                 self._current_tau_mad = self.lambdas / grad_noise
-    
+
     def _update(self, data, A, S, lambdas=None):
         r"""
         Function called in the Framework so as to update S
         (so as to update A, the inputs are transposed).
-        
+
         Inputs
         ------
         - data: numpy array
@@ -220,7 +220,7 @@ class SparseUpdater(Updater):
             Spectra array.
         - lambdas (default: None): numpy array
             Values of the sparsity parameter.
-        
+
         Output
         ------
         S: update value for S.
@@ -253,7 +253,7 @@ class SparseUpdater(Updater):
                       'initialization': S}
         res = self._algo.run(parameters)
         return res["x"]
-    
+
     def _choose_proximal(self, S):
         r"""
         Choose the proximal operator to be used among soft and hard-thresholding,
@@ -272,7 +272,7 @@ class SparseUpdater(Updater):
             if self._tau_mad == 0:
                 if self._iteration >= self._refinement_iteration:
                     n_S = tools.dim_norm(S, 1)
-                    
+
                     def norm_prox(z, threshold):
                         r"""
                         Norm projection for the lines of S, used during the refinement
@@ -282,7 +282,7 @@ class SparseUpdater(Updater):
                             prox(z, 0), n_S)
                     return norm_prox
         return prox
-    
+
     def _update_lambdas(self, data, A, S):
         r"Updates the value of the sparsity parameter lambdas."
         # update noise
@@ -311,7 +311,7 @@ class SparseUpdater(Updater):
 class RedWaveUpdater(Updater):
     r"""
     Updaters implement specific updates for the mixing coefficients
-    A and the spectra A. They are designed to be used with the 
+    A and the spectra A. They are designed to be used with the
     Framework class.
     This updater aims at solving problem either
     (with W a redundant wavelet transform) the analysis formulation:
@@ -322,12 +322,12 @@ class RedWaveUpdater(Updater):
     using the Generalized Forward-Backward algorithm (Raguet et al, 2013).
     Required and optional keyword parameters
     are listed below.
-    
+
     Keyword parameters (required)
     ------------------
     - redwave_operator (required): RedWave instance
         Wavelet operator to be applied on the sources.
-    
+
     Keyword parameters (optional)
     ------------------
     - linear_tau_mad_decrease (default: False): bool
@@ -359,22 +359,22 @@ class RedWaveUpdater(Updater):
         gradient.
     - nonnegative (default: True): bool
         If True, uses a non-negative constraint.
-    
-    
+
+
     Note
     ----
     This updater aims at solving:
-    
+
     .. math::
         \text{argmin}_{\mathbf{S}\ge 0} \frac{1}{2}\|\mathbf{Y} - \mathbf{A} \mathbf{S}\|_2^2 + \|\mathbf{\mu} \odot (\mathbf{W}^T\mathbf{S})||_1
-    
+
     .
     """
 
     def __init__(self, parameters=None, **kargs):
         r"""
         Updaters implement specific updates for the mixing coefficients
-        A and the spectra A. They are designed to be used with the 
+        A and the spectra A. They are designed to be used with the
         Framework class.
         This updater aims at solving problem either
         (with W a redundant wavelet transform) the analysis formulation:
@@ -383,18 +383,18 @@ class RedWaveUpdater(Updater):
         or the synthesis formulation:
         argmin_{S_w * W >= 0} ||Y - A * S_w * W||_2^2 + ||lambda .* S_w)||_1
         using the Generalized Forward-Backward algorithm (Raguet et al, 2013).
-        
+
         Inputs
         ------
         - parameters (default: None): dict
             Parameters dictionary, with potential keywords provided below.
         - any keyword argument from the ones listed below.
-        
+
         Keyword parameters (required)
         ------------------
         - redwave_operator (required): RedWave instance
             Wavelet operator to be applied on the sources.
-        
+
         Keyword parameters (optional)
         ------------------
         - linear_tau_mad_decrease (default: False): bool
@@ -426,15 +426,15 @@ class RedWaveUpdater(Updater):
             gradient.
         - nonnegative (default: True): bool
             If True, uses a non-negative constraint.
-        
-        
+
+
         Note
         ----
         This updater aims at solving:
-        
+
         .. math::
             \text{argmin}_{\mathbf{S}\ge 0} \frac{1}{2}\|\mathbf{Y} - \mathbf{A} \mathbf{S}\|_2^2 + \|\mathbf{\mu} \odot (\mathbf{W}^T\mathbf{S})||_1
-        
+
         .
         """
         Updater.__init__(self)
@@ -452,12 +452,12 @@ class RedWaveUpdater(Updater):
         self._current_tau_mad = None
         self._wave = self._parameters["redwave_operator"]
         self.noise = None
-        
+
     def _initialize(self, data, A, S, main_parameters, which):
         r"""
         Function called at the beginning of the algorithm so as to
         prepare the update steps.
-        
+
         Inputs
         ------
         - data: numpy array
@@ -518,12 +518,12 @@ the sources are not continuous")
                     relative_difference_tolerance=rel_tol)
         else:
             raise Exception("No sparsity: use SparseUpdater instead.")
-            
+
     def _update(self, data, A, S, lambdas=None):
         r"""
         Function called in the Framework so as to update S
         (so as to update A, the inputs are transposed).
-        
+
         Inputs
         ------
         - data: numpy array
@@ -534,7 +534,7 @@ the sources are not continuous")
             Spectra array.
         - lambdas (default: None): numpy array
             Values of the sparsity parameter.
-        
+
         Output
         ------
         S: update value for S.
@@ -560,7 +560,7 @@ the sources are not continuous")
                                                                   AtY)[0]))
             scale_std = self._wave.extract_scale_vals(S_inv_w,
                                                       tools.dim_mad_std)
-            scale_std *= reweighted_l1 
+            scale_std *= reweighted_l1
             lambdas /= 1.0 + (abs(S_inv_w) /
                               self._wave.make_full_vals(scale_std))**2
         # remove coarse scale sparsity if the data is not sparse in the
@@ -580,7 +580,7 @@ the sources are not continuous")
                                                     self._l2s(AtY), lambdas))
         else:
             raise Exception("Type can only be analysis or synthesis.")
-    
+
     def _update_lambdas(self, data, A, S):
         r"Updates the value of the sparsity parameter lambdas."
         # update noise
@@ -610,14 +610,14 @@ the sources are not continuous")
         else:
             self.lambdas = bsstools.linear_decrease(remaining_iterations,
                 self.lambdas, self._tau_mad * grad_noise)
-    
+
     def _synthesis_update(self, S, AtA, AtY, lambdas):
         r"Implements the update in the case of a synthesis formulation."
         parameters = {}
         parameters['gradient'] =\
             lambda Sw: self._wave.forward(np.einsum('ij...,jk...->ik...', AtA,
                 self._wave.backward(Sw)) - AtY)
-        
+
         def proj(x, threshold):  # non-negativity proximal operator
             temp = np.maximum(0.0, -self._wave.backward(x))
             return x + self._wave.forward(temp)

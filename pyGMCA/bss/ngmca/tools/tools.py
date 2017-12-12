@@ -1,45 +1,45 @@
 # -\*- coding: utf-8 -\*-
-
-r"""
-tools.py - This file is part of pygmca.
-The pygmca package aims at performing non-negative matrix factorization.
-This module provides a class allowing to easily compute and display benchmarks.
-Copyright 2014 CEA
-Contributor : Jérémy Rapin (jeremy.rapin.math@gmail.com)
-Created on September 30, 2014, last modified on December 14, 2014
-
-This software is governed by the CeCILL  license under French law and
-abiding by the rules of distribution of free software.  You can  use,
-modify and/ or redistribute the software under the terms of the CeCILL
-license as circulated by CEA, CNRS and INRIA at the following URL
-"http://www.cecill.info".
-
-As a counterpart to the access to the source code and  rights to copy,
-modify and redistribute granted by the license, users are provided only
-with a limited warranty  and the software's author,  the holder of the
-economic rights,  and the successive licensors  have only  limited
-liability.
-
-In this respect, the user's attention is drawn to the risks associated
-with loading,  using,  modifying and/or developing or reproducing the
-software by the user in light of its specific status of free software,
-that may mean  that it is complicated to manipulate,  and  that  also
-therefore means  that it is reserved for developers  and  experienced
-professionals having in-depth computer knowledge. Users are therefore
-encouraged to load and test the software's suitability as regards their
-requirements in conditions enabling the security of their systems and/or
-data to be ensured and,  more generally, to use and operate it in the
-same conditions as regards security.
-
-The fact that you are presently reading this means that you have had
-knowledge of the CeCILL license and that you accept its terms.
-"""
-
-__version__ = "1.0"
-__author__ = "Jeremy Rapin"
-__url__ = "http://www.cosmostat.org/GMCALab.html"
-__copyright__ = "(c) 2014 CEA"
-__license__ = "CeCill"
+#
+# r"""
+# tools.py - This file is part of pygmca.
+# The pygmca package aims at performing non-negative matrix factorization.
+# This module provides a class allowing to easily compute and display benchmarks.
+# Copyright 2014 CEA
+# Contributor : Jérémy Rapin (jeremy.rapin.math@gmail.com)
+# Created on September 30, 2014, last modified on December 14, 2014
+#
+# This software is governed by the CeCILL  license under French law and
+# abiding by the rules of distribution of free software.  You can  use,
+# modify and/ or redistribute the software under the terms of the CeCILL
+# license as circulated by CEA, CNRS and INRIA at the following URL
+# "http://www.cecill.info".
+#
+# As a counterpart to the access to the source code and  rights to copy,
+# modify and redistribute granted by the license, users are provided only
+# with a limited warranty  and the software's author,  the holder of the
+# economic rights,  and the successive licensors  have only  limited
+# liability.
+#
+# In this respect, the user's attention is drawn to the risks associated
+# with loading,  using,  modifying and/or developing or reproducing the
+# software by the user in light of its specific status of free software,
+# that may mean  that it is complicated to manipulate,  and  that  also
+# therefore means  that it is reserved for developers  and  experienced
+# professionals having in-depth computer knowledge. Users are therefore
+# encouraged to load and test the software's suitability as regards their
+# requirements in conditions enabling the security of their systems and/or
+# data to be ensured and,  more generally, to use and operate it in the
+# same conditions as regards security.
+#
+# The fact that you are presently reading this means that you have had
+# knowledge of the CeCILL license and that you accept its terms.
+# """
+#
+# __version__ = "1.0"
+# __author__ = "Jeremy Rapin"
+# __url__ = "http://www.cosmostat.org/GMCALab.html"
+# __copyright__ = "(c) 2014 CEA"
+# __license__ = "CeCill"
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -54,14 +54,14 @@ from pyGMCA.bss import sample_nmr_spectra
 
 class Factorization(object):
     r"""
-    Class with fields A and S representing the 
+    Class with fields A and S representing the
     factorization A.dot(S)
     """
 
     def __init__(self, shape, rank, random_initialization=True):
         r"""
         Initialize a factorization of given shape and rank.
-        
+
         Inputs
         ------
         - shape: tuple or list
@@ -79,7 +79,7 @@ class Factorization(object):
         else:
             self.A = np.zeros([shape[0], rank])
             self.S = np.zeros([rank, shape[1]])
-    
+
     def set_scale_on(self, which):
         r"""
         Set the scale of each source on either A or S.
@@ -113,13 +113,13 @@ class Factorization(object):
 def create_sparse_data(parameters=None, **kargs):
     r"""
     Synthesize mixtures of sparse sources.
-    
+
     Inputs
     ------
     - parameters (default: None): dict
         Parameters dictionary, with potential keywords provided below.
     - any keyword argument from the ones listed below.
-    
+
     Keyword parameters (required)
     ------------------
     - rows (required): int
@@ -128,7 +128,7 @@ def create_sparse_data(parameters=None, **kargs):
         Rank of the factorization (number of source signals to recover).
     - columns (required): int
         Number of columns of the data.
-    
+
     Keyword parameters (optional)
     ------------------
     - bernoulli_S (default: 0.1): float
@@ -188,20 +188,20 @@ def create_sparse_data(parameters=None, **kargs):
 def create_realistic_nmr_mixtures(parameters=None, **kargs):
     r"""
     Synthesize mixtures of NMR spectra convolved with a Laplacian filter.
-    
+
     Inputs
     ------
     - parameters (default: None): dict
         Parameters dictionary, with potential keywords provided below.
     - any keyword argument from the ones listed below.
-    
+
     Keyword parameters (required)
     ------------------
     - rows (required): int
         Number of rows of the data.
     - rank (required): int
         Rank of the factorization (number of source signals to recover).
-    
+
     Keyword parameters (optional)
     ------------------
     - alpha_A (default: 2): float
@@ -269,7 +269,7 @@ def make_reference_data_and_noise(reference, dB, multiplicative_std=0):
     r"""
     Adds the noise and data to the reference data dictionary in which the
     factorization is provided.
-    
+
     Inputs
     ------
     - reference: dict
@@ -317,7 +317,7 @@ def reinitialize_null_sources(factorization, data, verbose=0):
     r"""
     Fast reinitialization of null sources in the factorization
     by picking one column in the residue.
-    
+
     Inputs
     ------
     - factorization: Factorization instance
@@ -326,7 +326,7 @@ def reinitialize_null_sources(factorization, data, verbose=0):
         Data array to be processed.
     - verbose (default: 0): bool
         Display important parameters
-    
+
     Output
     ------
     Same factorization with the reinitialized sources.
@@ -355,7 +355,7 @@ def warm_initialization(data, rank):
     r"""
     Initialization function alternating between ALS updates and constrained
     updates.
-    
+
     Inputs
     ------
     - data: numpy array
@@ -389,11 +389,11 @@ def nonnegative_sparse_inversion(AtY, AtA, S0, mu, options):
     "Solves problem:
     argmin_{S >= 0} ||Y - A S||_2^2 + ||lambda .* S||_1
     using FISTA (Beck & Teboulle 2009).
-    
+
     Output
     ------
         S: solution of the problem.
-    
+
     Inputs
     ------
     - AtY: numpy array
@@ -406,7 +406,7 @@ def nonnegative_sparse_inversion(AtY, AtA, S0, mu, options):
         Value of the sparsity parameter mu
     - options: dict
         Options dictionary, with potential keywords provided below.
-    
+
     Keyword parameters (optional)
     ------------------
     - hardthresholding (default: 0): bool
@@ -421,13 +421,13 @@ def nonnegative_sparse_inversion(AtY, AtA, S0, mu, options):
         for stopping the algorithm (not activated if 0).
     - maximum_iteration (default: 100): int
         Maximum number of steps to perform.
-    
+
     Note
     ----
-    
+
     .. math::
         \text{argmin}_{\mathbf{S}\ge 0} \frac{1}{2}\|\mathbf{Y} - \mathbf{A} \mathbf{S}\|_2^2 + \|\mathbf{\mu} \odot \mathbf{S}||_1
-    
+
     Requires the precomputation of :math:`\mathbf{A}^T\mathbf{Y}` and :math:`\mathbf{A}^T\mathbf{A}`.
     """
     _default_keyword_parameters = {"maximum_iteration": 100,
@@ -435,21 +435,21 @@ def nonnegative_sparse_inversion(AtY, AtA, S0, mu, options):
                                    "hardthresholding": 0,
                                    "reweighted_l1": 0,
                                    'relative_difference_tolerance': 0.00001}
-    options = core.tools.fill_parameters(options, _default_keyword_parameters, 
+    options = core.tools.fill_parameters(options, _default_keyword_parameters,
                                           "nonnegative_sparse_inversion")
     # reweighted L1 (not tested, beware reference modification)
     if (options["reweighted_l1"] > 0) and (np.max(mu) > 0):
         S_inv = np.linalg.lstsq(AtA, AtY)[0]
         noise_estimate = (options["reweighted_l1"] *
                           core.tools.dim_mad_std(S_inv, 1))
-        mu = mu / (1.0 + (abs(S_inv) / noise_estimate)**2) 
+        mu = mu / (1.0 + (abs(S_inv) / noise_estimate)**2)
     # proximal operator
     if options["hardthresholding"]:
         prox = proximal.operators.nonnegative_hard_thresholding
     else:
         if options["norm_constrained"]:
             n_S = core.tools.dim_norm(S0, 1)
-            
+
             def prox(z, threshold):
                 r"Proximal operator handle."
                 return proximal.operators.nonnegative_soft_thresholding(
@@ -474,7 +474,7 @@ def evaluation(result, reference, verbose=0):
     Evaluate BSS results using criteria from Vincent et al.
     This function reorders the sources and mixtures so as to match
     the reference factorization.
-    
+
     Inputs
     ------
     - result: dict
@@ -484,7 +484,7 @@ def evaluation(result, reference, verbose=0):
         other relevant information if need be.
     - verbose (default: 0): bool
         Display important parameters
-    
+
     Outputs
     ------
     criteria: dict
@@ -553,14 +553,14 @@ def evaluation(result, reference, verbose=0):
 def compute_sdr_matrix(X, Y):
     r"""
     Computes the SDR of each couple reference/estimate sources.
-    
+
     Inputs
     ------
     X: numpy array
         reference of column signals.
     Y: numpy array
         estimate of column signals.
-    
+
     Output
     ------
     MSDR: numpy array
@@ -588,7 +588,7 @@ def compute_sdr_matrix(X, Y):
 def decomposition_criteria(Se, Sr, noise):
     r"""
     Computes the SDR of each couple reference/estimate sources.
-    
+
     Inputs
     ------
     Se: numpy array
@@ -597,7 +597,7 @@ def decomposition_criteria(Se, Sr, noise):
         reference  of column signals.
     noise: numpy array
         noise matrix cotaminating the data.
-    
+
     Outputs
     ------
     criteria: dict
@@ -683,7 +683,7 @@ def linear_decrease(remaining_iterations, current_value, aimed_value):
 def load_images(smaller_shape=True):
     r"""
     Load 4 images stacked into a 3D array along the last dimension.
-    
+
     Inputs
     ------
     - smaller_shape (default: True): bool
@@ -716,7 +716,7 @@ def show_images(images, stack_dim=0, shape="optional",
                 indices="all"):
     r"""
     Show images which are stacked into an array along a given dimension.
-    
+
     Inputs
     ------
     - images: numpy array
@@ -759,18 +759,18 @@ images.")
 def create_image_mixtures(parameters=None, **kargs):
     r"""
     Synthesize mixtures of 4 images.
-    
+
     Inputs
     ------
     - parameters (default: None): dict
         Parameters dictionary, with potential keywords provided below.
     - any keyword argument from the ones listed below.
-    
+
     Keyword parameters (required)
     ------------------
     - rows (required): int
         Number of rows of the data.
-    
+
     Keyword parameters (optional)
     ------------------
     - alpha_A (default: 2): float

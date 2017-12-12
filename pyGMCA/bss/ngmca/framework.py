@@ -1,45 +1,45 @@
-# -\*- coding: utf-8 -\*-
-
-r"""
-framework.py - This file is part of pygmca.
-The pygmca package aims at performing non-negative matrix factorization.
-This module implements a generic GMCA framework, using updaters.
-Copyright 2014 CEA
-Contributor : Jérémy Rapin (jeremy.rapin.math@gmail.com)
-Created on December 13, 2014, last modified on December 14, 2014
-
-This software is governed by the CeCILL  license under French law and
-abiding by the rules of distribution of free software.  You can  use,
-modify and/ or redistribute the software under the terms of the CeCILL
-license as circulated by CEA, CNRS and INRIA at the following URL
-"http://www.cecill.info".
-
-As a counterpart to the access to the source code and  rights to copy,
-modify and redistribute granted by the license, users are provided only
-with a limited warranty  and the software's author,  the holder of the
-economic rights,  and the successive licensors  have only  limited
-liability.
-
-In this respect, the user's attention is drawn to the risks associated
-with loading,  using,  modifying and/or developing or reproducing the
-software by the user in light of its specific status of free software,
-that may mean  that it is complicated to manipulate,  and  that  also
-therefore means  that it is reserved for developers  and  experienced
-professionals having in-depth computer knowledge. Users are therefore
-encouraged to load and test the software's suitability as regards their
-requirements in conditions enabling the security of their systems and/or
-data to be ensured and,  more generally, to use and operate it in the
-same conditions as regards security.
-
-The fact that you are presently reading this means that you have had
-knowledge of the CeCILL license and that you accept its terms.
-"""
-
-__version__ = "1.0"
-__author__ = "Jeremy Rapin"
-__url__ = "http://www.cosmostat.org/GMCALab.html"
-__copyright__ = "(c) 2014 CEA"
-__license__ = "CeCill"
+# # -\*- coding: utf-8 -\*-
+#
+# r"""
+# framework.py - This file is part of pygmca.
+# The pygmca package aims at performing non-negative matrix factorization.
+# This module implements a generic GMCA framework, using updaters.
+# Copyright 2014 CEA
+# Contributor : Jérémy Rapin (jeremy.rapin.math@gmail.com)
+# Created on December 13, 2014, last modified on December 14, 2014
+#
+# This software is governed by the CeCILL  license under French law and
+# abiding by the rules of distribution of free software.  You can  use,
+# modify and/ or redistribute the software under the terms of the CeCILL
+# license as circulated by CEA, CNRS and INRIA at the following URL
+# "http://www.cecill.info".
+#
+# As a counterpart to the access to the source code and  rights to copy,
+# modify and redistribute granted by the license, users are provided only
+# with a limited warranty  and the software's author,  the holder of the
+# economic rights,  and the successive licensors  have only  limited
+# liability.
+#
+# In this respect, the user's attention is drawn to the risks associated
+# with loading,  using,  modifying and/or developing or reproducing the
+# software by the user in light of its specific status of free software,
+# that may mean  that it is complicated to manipulate,  and  that  also
+# therefore means  that it is reserved for developers  and  experienced
+# professionals having in-depth computer knowledge. Users are therefore
+# encouraged to load and test the software's suitability as regards their
+# requirements in conditions enabling the security of their systems and/or
+# data to be ensured and,  more generally, to use and operate it in the
+# same conditions as regards security.
+#
+# The fact that you are presently reading this means that you have had
+# knowledge of the CeCILL license and that you accept its terms.
+# """
+#
+# __version__ = "1.0"
+# __author__ = "Jeremy Rapin"
+# __url__ = "http://www.cosmostat.org/GMCALab.html"
+# __copyright__ = "(c) 2014 CEA"
+# __license__ = "CeCill"
 
 # -*- coding: utf-8 -*-
 
@@ -53,11 +53,11 @@ import numpy as np
 class Updater(object):
     r"""
     Updaters implement specific updates for the mixing coefficients
-    A and the spectra A. They are designed to be used with the 
+    A and the spectra A. They are designed to be used with the
     Framework class.
     Required and optional keyword parameters
     are listed below.
-    
+
     Keyword parameters (optional)
     ------------------
     - maximum_iteration (default: 80): int
@@ -72,15 +72,15 @@ class Updater(object):
     def __init__(self, parameters=None, **kargs):
         r"""
         Updaters implement specific updates for the mixing coefficients
-        A and the spectra A. They are designed to be used with the 
+        A and the spectra A. They are designed to be used with the
         Framework class.
-        
+
         Inputs
         ------
         - parameters (default: None): dict
             Parameters dictionary, with potential keywords provided below.
         - any keyword argument from the ones listed below.
-        
+
         Keyword parameters (optional)
         ------------------
         - maximum_iteration (default: 80): int
@@ -100,7 +100,7 @@ class Updater(object):
         self._iteration = -1
         self.lambdas = 0
         self._refinement_iteration = 0
-        
+
     def __add_parameters(self, parameters, kargs):
         r"""
         Update parameter dictionary with the ones provided.
@@ -109,7 +109,7 @@ class Updater(object):
         if parameters is not None:
             self._parameters.update(parameters)
         self._parameters.update(kargs)
-    
+
     def _set_parameters(self, parameters, kargs):
         r"""
         Update parameter dictionary with the default ones provided.
@@ -121,12 +121,12 @@ class Updater(object):
         # modifier are used to modify the data before the update
         # main use is for removing the coarse scale
         self._modifier = self._parameters.setdefault("modifier", None)
-    
+
     def initialize(self, data, A, S, main_parameters=None, which='S'):
         r"""
         Function called at the beginning of the algorithm so as to
         prepare the update steps.
-        
+
         Inputs
         ------
         - data: numpy array
@@ -153,12 +153,12 @@ class Updater(object):
         if self._modifier is not None:
             self._data_m = self._modifier(data.T).T
             self._prev_data = data
-    
+
     def update(self, data, A, S, lambdas=None):
         r"""
         Function called in the Framework so as to update S
         (so as to update A, the inputs are transposed).
-        
+
         Inputs
         ------
         - data: numpy array
@@ -169,7 +169,7 @@ class Updater(object):
             Spectra array.
         - lambdas (default: None): numpy array
             Values of the sparsity parameter.
-        
+
         Output
         ------
         S: update value for S.
@@ -183,14 +183,14 @@ class Updater(object):
             return self._update(self._data_m, A_m, S, lambdas)
         else:
             return self._update(data, A, S, lambdas)
-    
-    
+
+
     def _initialize(self, data, A, S, refinement_iteration=0):
         r"""
         *Virtual function which must be implemented*
         Function called at the beginning of the algorithm so as to
         prepare the update steps.
-        
+
         Inputs
         ------
         - data: numpy array
@@ -203,13 +203,13 @@ class Updater(object):
             Iteration at which to begin the refinement phase.
         """
         raise NotImplementedError
-    
+
     def _update(self, data, A, S, lambdas=None):
         r"""
         *Virtual function which must be implemented*
         Function called in the Framework so as to update S
         (so as to update A, the inputs are transposed).
-        
+
         Inputs
         ------
         - data: numpy array
@@ -220,18 +220,18 @@ class Updater(object):
             Spectra array.
         - lambdas (default: None): numpy array
             Values of the sparsity parameter.
-        
+
         Output
         ------
         S: update value for S.
         """
         raise NotImplementedError
-    
+
     def process(self, data, A, S, lambdas=None):
         r"""
         Implements the resolution of an update without requiring the use of the
         full framework.
-        
+
         Inputs
         ------
         - data: numpy array
@@ -258,7 +258,7 @@ class Framework(core.Algorithm):
     take as inputs updater instances for A and S.
     Required and optional keyword parameters are listed below
     (to be provided before running the algorithm).
-    
+
     Keyword parameters (required)
     ------------------
     - rank (required): int
@@ -269,7 +269,7 @@ class Framework(core.Algorithm):
         Instance of Updater which must be used to update A.
     - data (required): numpy array
         Data array to be processed.
-    
+
     Keyword parameters (optional)
     ------------------
     - display_time (default: 0.5): float
@@ -303,13 +303,13 @@ class Framework(core.Algorithm):
         Class constructor.
         Parameters can be provided upon instance creation
         (see inputs and keywords)
-        
+
         Inputs
         ------
         - parameters (default: None): dict
             Parameters dictionary, with potential keywords provided below.
         - any keyword argument from the ones listed below.
-        
+
         Keyword parameters (required)
         ------------------
         - rank (required): int
@@ -320,7 +320,7 @@ class Framework(core.Algorithm):
             Instance of Updater which must be used to update A.
         - data (required): numpy array
             Data array to be processed.
-        
+
         Keyword parameters (optional)
         ------------------
         - display_time (default: 0.5): float
@@ -358,11 +358,11 @@ class Framework(core.Algorithm):
             'A_updater': None,
             'relative_difference_tolerance': 0})
         self._refinement_iteration = 0
-    
+
     def _initialize(self):
         r"Function called at the beginning of the algorithm."
         #prepare useful constants
-        
+
         # use initialization if provided, else use the warm init. routine.
         data = self._parameters['data']
         if "initialization" in self._parameters.keys():
@@ -394,11 +394,11 @@ class Framework(core.Algorithm):
             self._data['factorization'].set_scale_on('A')
         self._data["A_updater"].initialize(data.T, S.T, A.T,
                                            self._parameters, 'A')
-        
+
     def _terminate(self):
         r"Function called at the end of the algorithm."
         self._data['factorization'].set_scale_on('S')
-    
+
     def _iterate(self):
         r"Function called at each iteration of the algorithm."
         # obtain handles
@@ -417,7 +417,7 @@ class Framework(core.Algorithm):
             factor.set_scale_on('A')
         factor.A = self._data["A_updater"].update(data.T, factor.S.T,
                                                   factor.A.T).T
-    
+
     def _extract_current_iterate_matrix(self):
         r"Function called at each iteration to compute the relative difference."
         return self._data['factorization'].A.copy()
