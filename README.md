@@ -1,7 +1,7 @@
-<<<<<<< HEAD
+========================================================
 # pyGMCALab
 Toolbox for solving sparse matrix factorization problems
->>>>>>>
+========================================================
 
 This toolbox is composed of the following submodules:
 
