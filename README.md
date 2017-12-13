@@ -5,7 +5,9 @@ Toolbox for solving sparse matrix factorization problems
 This toolbox is composed of the following submodules:
 
 * GMCA is the building block of the pyGMCALab toolbox. This algorithm basically tackles
-sparse BSS problems.
+sparse BSS problems :
+
+![gmca](./Fig/gmca.pdf)
 
 * Building upon GMCA, AMCA is an extension that specifically deals with partially correlated sources
 
@@ -23,7 +25,7 @@ For all these algorithms, we strongly advise the interested user to have a close
 ### The GMCA algorithm (Generalized Morphological Component Analysis)
 It tackles sparse blind source separation (BSS) problems of the form:
 
-$$ min_{A,S} \sum_{i=1}^n \lambda_i \|s_i\|_1 + \frac{1}{2}\|X - AS \|_F^2 $$
+![ngmca](./Fig/ngmca.pdf)
 
 One of the aspects of the GMCA algorithm is that the regularization parameters are automatically tuned based on the noise level. The latter is estimated straight from the data thanks to an empirical estimator coined the Median Absolute Deviation (MAD).
 The current code assumes that the data are already expressed in the sparse domain. A first step then consist in applying your favorite sparsifying transfrom to the input data X prior to perform the GMCA algorithm. For more details about the GMCA algorithm, we refer the interested reader to [2, 3].
