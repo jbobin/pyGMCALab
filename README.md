@@ -7,8 +7,6 @@ This toolbox is composed of the following submodules:
 * GMCA is the building block of the pyGMCALab toolbox. This algorithm basically tackles
 sparse BSS problems :
 
-![](./Fig/gmca.pdf?raw=true)
-
 * Building upon GMCA, AMCA is an extension that specifically deals with partially correlated sources
 
 * nGMCA allows solving sparse non-negative matrix factorization problems (sparse NMF). Sparse modelling can be done
@@ -25,7 +23,7 @@ For all these algorithms, we strongly advise the interested user to have a close
 ### The GMCA algorithm (Generalized Morphological Component Analysis)
 It tackles sparse blind source separation (BSS) problems of the form:
 
-![](./Fig/ngmca.pdf?raw=true)
+![](./Fig/gmca.png?raw=true)
 
 One of the aspects of the GMCA algorithm is that the regularization parameters are automatically tuned based on the noise level. The latter is estimated straight from the data thanks to an empirical estimator coined the Median Absolute Deviation (MAD).
 The current code assumes that the data are already expressed in the sparse domain. A first step then consist in applying your favorite sparsifying transfrom to the input data X prior to perform the GMCA algorithm. For more details about the GMCA algorithm, we refer the interested reader to [2, 3].
@@ -39,7 +37,7 @@ Both GMCA and AMCA can be applied using the same basic code, with the exception 
 
 It tackles sparse non-negative matrix factorization problems (NMF) problems of the form:
 
-$$ min_{A \geq 0,S \geq 0} \sum_{i=1}^n \lambda_i \|s_i \Phi^T\|_1 + \frac{1}{2}\|X - AS \|_F^2 $$
+![](./Fig/ngmca.png?raw=true)
 
 where Φ stands for the sparse representation. One novelty of the nGMCA algorithm is that it makes use of recent solvers for non-smooth convex optimization problems such as the (Generalized) Forward Backward splitting algorithm (FBS). The pyGMCALab toolbox provides implementations of the FBS to tackle the basic subproblems that compose the nGMCA algorithm.
 
