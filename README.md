@@ -23,7 +23,7 @@ For all these algorithms, we strongly advise the interested user to have a close
 ### The GMCA algorithm (Generalized Morphological Component Analysis)
 It tackles sparse blind source separation (BSS) problems of the form:
 
-![](./Fig/gmca.png?raw=true)
+![](./fig/gmca.png?raw=true)
 
 One of the aspects of the GMCA algorithm is that the regularization parameters are automatically tuned based on the noise level. The latter is estimated straight from the data thanks to an empirical estimator coined the Median Absolute Deviation (MAD).
 The current code assumes that the data are already expressed in the sparse domain. A first step then consist in applying your favorite sparsifying transform to the input data X prior to perform the GMCA algorithm.
@@ -42,7 +42,7 @@ For more details about the GMCA algorithm, we refer the interested reader to:
 
 It tackles sparse non-negative matrix factorization problems (NMF) problems of the form:
 
-![](./Fig/ngmca.png?raw=true)
+![](./fig/ngmca.png?raw=true)
 
 where Φ stands for the sparse representation. One novelty of the nGMCA algorithm is that it makes use of recent solvers for non-smooth convex optimization problems such as the (Generalized) Forward Backward splitting algorithm (FBS). The pyGMCALab toolbox provides implementations of the FBS to tackle the basic subproblems that compose the nGMCA algorithm.
 
@@ -57,7 +57,7 @@ For more details, we refer the interested user to:
 
 It tackles sparse robust BSS  problems of the form:
 
-![](./Fig/rgmca.png?raw=true)
+![](./fig/rgmca.png?raw=true)
 
 where the term O stands for sparse outliers. For more details, we refer the interested user to:
 
