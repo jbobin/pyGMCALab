@@ -33,8 +33,8 @@ Both GMCA and AMCA can be applied using the same basic code, with the exception 
 
 For more details about the GMCA algorithm, we refer the interested reader to:
 
-[J.Bobin, J.-L. Starck, Y.Moudden, J. Fadili, Blind Source Separation: the Sparsity Revolution](http://jbobin.cosmostat.org/docs/aiep08.pdf)
-[J.Bobin , J. Rapin, J.L. Starck and A. Larue, Sparsity and adaptivity for the blind separation of partially correlated sources](http://arxiv.org/pdf/1412.4005v1)
+* [J.Bobin, J.-L. Starck, Y.Moudden, J. Fadili, Blind Source Separation: the Sparsity Revolution](http://jbobin.cosmostat.org/docs/aiep08.pdf)
+* [J.Bobin , J. Rapin, J.L. Starck and A. Larue, Sparsity and adaptivity for the blind separation of partially correlated sources](http://arxiv.org/pdf/1412.4005v1)
 
 ***
 
@@ -48,8 +48,8 @@ where Φ stands for the sparse representation. One novelty of the nGMCA algorith
 
 For more details, we refer the interested user to:
 
-[J.Rapin, J.Bobin, A. Larue and J.L. Starck, Sparse and non-negative BSS for noisy data](http://arxiv.org/pdf/1308.5546)
-[J. Rapin, J.Bobin, A. Larue and J.L. Starck, NMF with sparse regularizations in transformed domains](http://arxiv.org/pdf/1407.7691)
+* [J.Rapin, J.Bobin, A. Larue and J.L. Starck, Sparse and non-negative BSS for noisy data](http://arxiv.org/pdf/1308.5546)
+* [J. Rapin, J.Bobin, A. Larue and J.L. Starck, NMF with sparse regularizations in transformed domains](http://arxiv.org/pdf/1407.7691)
 
 ***
 
@@ -61,7 +61,7 @@ It tackles sparse robust BSS  problems of the form:
 
 where the term O stands for sparse outliers. For more details, we refer the interested user to:
 
-[C.Chenot, J.Bobin, Unsupervised separation of sparse sources in the presence of outliers](http://http//jbobin.cosmostat.org/Documents/rAMCA_Mar9.pdf)
+* [C.Chenot, J.Bobin, Unsupervised separation of sparse sources in the presence of outliers](http://http//jbobin.cosmostat.org/Documents/rAMCA_Mar9.pdf)
 
 ***
 
