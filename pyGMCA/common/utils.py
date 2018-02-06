@@ -172,7 +172,7 @@ def Make_Experiment_Exact(n_s=2,n_obs=2,t_samp=1024,noise_level=40,dynamic=10,pt
     X0 = np.dot(A0,S0)
 
     N = np.random.randn(n_obs,t_samp)
-    sigma_noise = np.power(10,(-noise_level/20))*np.linalg.norm(X0,ord='fro')/np.linalg.norm(N,ord='fro')
+    sigma_noise = np.power(10,(-noise_level/20.))*np.linalg.norm(X0,ord='fro')/np.linalg.norm(N,ord='fro')
     N = sigma_noise*N
 
     X = X0 + N
@@ -204,7 +204,7 @@ def Make_Experiment_GG(n_s=2,n_obs=2,t_samp=1024,noise_level=40,dynamic=0,CondNu
     X0 = np.dot(A0,S0)
 
     N = np.random.randn(n_obs,t_samp)
-    sigma_noise = np.power(10.,(-noise_level/20))*np.linalg.norm(X0,ord='fro')/np.linalg.norm(N,ord='fro')
+    sigma_noise = np.power(10.,(-noise_level/20.))*np.linalg.norm(X0,ord='fro')/np.linalg.norm(N,ord='fro')
     N = sigma_noise*N
 
     X = X0 + N
