@@ -65,9 +65,20 @@ where the term O stands for sparse outliers. For more details, we refer the inte
 
 ***
 
-### Third-party code : Undecimated wavelets with the pyredwave toolbox
+### Third-party code :
+
+* Undecimated wavelets with the pyredwave toolbox
 
 The algorithms using sparsity in a transformed domain need the pyredwave Toolbox: a specific toolbox computing 1D or 2D wavelet transform on any 1 or 2 dimensions of an up to 4 dimensional data. Execute ”python setup.py build” in a terminal from the pyredwave folder so as to build it. The compilation requires Boost.Python (tested on Mac and Ubuntu, with Python 2.7). The toolbox uses OMP for CPU parallelization. To disable parallelization, remove the tag ” PARALLELIZED ” in pyredwave/pyredwave/cxx/redWaveTools.hpp
+
+* cxxStarlet
+
+The folder cxxStarlet contains C/python wrappers to compute the starlet transform (tested on Mac and Ubuntu, with Python 2.7). The toolbox uses OMP for CPU parallelization.
+compilation is done as follows:
+- Edit the CMakeList file and comment the desired command line (For MAC or For Linux) depending on the computer type
+- Go to the build subfolder and type cmake .. (please note that cmake is required)
+- If some libraries are missing (e.g. gsl, cfitsio, boost), you'll be notified to set them up
+- Type make, this will yield a sparse2d.so file that you will be able to import in python
 
 ### Acknowledgement
 Contributors include: J.Bobin, C.Chenot, C.Kervazo, J.Rapin.
